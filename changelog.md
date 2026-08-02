@@ -3,6 +3,19 @@
 Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versionnage
 [SemVer](https://semver.org/lang/fr/).
 
+## [1.1.0] 2026-08-02
+
+### Ajouté
+- Modale « ℹ️ Infos » (bouton dans la barre de contrôles) expliquant la stack, les
+  graphismes (Canvas 2D pur), la musique, les interactions, l'architecture (moteur/rendu/
+  audio séparés) et les algorithmes notables (angle de rebond selon le point d'impact sur
+  le paddle, 11 power-ups). Étape 15 du chantier de retrofit décrit dans `todo.md` racine
+  du monorepo.
+
+### Vérifié
+- Build propre, modale testée à l'ouverture/fermeture, aucune erreur console, aucun
+  débordement horizontal en 390×844.
+
 ## [1.0.0] 2026-07-31
 
 Première version intégrable à Hylst.Games, partie d'un export brut audité.

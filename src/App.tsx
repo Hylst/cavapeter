@@ -37,6 +37,7 @@ export default function App() {
   const [musicOn,    setMusicOn]    = useState(false);
   const [sfxOn,      setSfxOn]      = useState(true);
   const [fullscreen, setFullscreen] = useState(false);
+  const [showInfo,   setShowInfo]   = useState(false);
 
   // ── actions ────────────────────────────────
   const doStart = useCallback(() => {
@@ -241,11 +242,31 @@ export default function App() {
         <Btn onClick={doFullscreen} g="from-slate-700 to-slate-600">{fullscreen ? '⛶ Fenêtre' : '⛶ Plein écran'}</Btn>
         <Btn onClick={doMusicToggle} g={musicOn ? 'from-indigo-700 to-violet-700' : 'from-slate-700 to-slate-600'}>🎵 {musicOn ? 'ON' : 'OFF'}</Btn>
         <Btn onClick={doSfxToggle}   g={sfxOn  ? 'from-indigo-700 to-violet-700' : 'from-slate-700 to-slate-600'}>🔊 {sfxOn ? 'ON' : 'OFF'}</Btn>
+        <Btn onClick={() => setShowInfo(true)} g="from-slate-700 to-slate-600">ℹ️ Infos</Btn>
       </div>
 
       <p className="mt-1.5 text-center text-[10px] font-mono text-gray-600 max-w-[900px] hidden sm:block">
         Souris / ← → / Tactile · Laser : X · Pause : P · Plein écran : F · Musique : M
       </p>
+
+      {showInfo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4" onClick={() => setShowInfo(false)}>
+          <div className="w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl border border-indigo-500/20 bg-slate-900 shadow-[0_0_40px_rgba(99,102,241,0.15)]" onClick={e => e.stopPropagation()}>
+            <div className="p-6 space-y-3.5 text-sm leading-relaxed text-gray-300">
+              <h3 className="text-xl font-black bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Comment ce jeu a été fait</h3>
+              <p><strong className="text-white">Stack :</strong> React 19, TypeScript 5.9, Tailwind CSS 4, Vite 7, compilé en un seul fichier HTML, aucune dépendance chargée depuis l'extérieur.</p>
+              <p><strong className="text-white">Graphismes :</strong> tout est dessiné en Canvas 2D à chaque image (briques, balle, paddle, particules), aucun sprite ni image externe.</p>
+              <p><strong className="text-white">Musique &amp; sons :</strong> synthétisés en direct avec l'API Web Audio, aucun fichier audio chargé.</p>
+              <p><strong className="text-white">Interactions :</strong> souris, flèches ou tactile pour déplacer le paddle, clic ou touche X pour tirer au laser quand le power-up est actif.</p>
+              <p><strong className="text-white">Architecture :</strong> logique de jeu pure séparée du rendu (moteur, dessin et audio dans des modules distincts sans dépendance React), une seule boucle <code>requestAnimationFrame</code> qui met à jour l'état puis redessine, le HUD React ne se rafraîchit que si une valeur affichée a changé.</p>
+              <p><strong className="text-white">Algorithmes notables :</strong> l'angle de rebond de la balle sur le paddle dépend du point d'impact (toucher le bord renvoie plus à l'oblique que toucher le centre), disposition des briques régénérée par niveau, 11 power-ups différents qui tombent aléatoirement selon une chance propre à chaque niveau.</p>
+            </div>
+            <div className="border-t border-slate-800 p-4 text-center">
+              <button onClick={() => setShowInfo(false)} className="px-6 py-2 rounded-lg font-bold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:brightness-110 active:scale-95 transition-all">Fermer</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
