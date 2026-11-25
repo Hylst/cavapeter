@@ -94,4 +94,4 @@ seul fichier HTML et tourne hors ligne.
 
 ## Licence
 
-MIT, Geoffroy Streit (Hylst)
+AGPL-3.0-or-later, Geoffroy Streit (Hylst). Voir `LICENSE`.
