@@ -436,7 +436,7 @@ export function renderOverlay(ctx: CanvasRenderingContext2D, s: GameState, frame
 
   if (s.status==='idle') {
     big(ctx,'ÇA VA PÉTER',cx,cy-65,'#818cf8',frame,58);
-    med(ctx,`${CFG.maxLevel} niveaux · 11 power-ups · Combos dévastateurs`,cx,cy+2,'#94a3b8');
+    med(ctx,`${CFG.maxLevel} niveaux · 11 power-ups · Combos`,cx,cy+2,'#94a3b8');
     sm(ctx,'Souris / ← → / Tactile · Laser : X · Pause : P',cx,cy+28,'#64748b');
     sm(ctx,'Par Hylst, Geoffroy, avec l\'aide d\'une IA',cx,cy+56,'#475569');
     if (blink) sm(ctx,'▶  CLIQUEZ POUR JOUER',cx,cy+95,'#a5b4fc');
